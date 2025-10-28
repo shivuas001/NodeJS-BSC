@@ -14,6 +14,14 @@ app.post('/products', (req, res)=>{
 app.put('/products', (req, res)=>{
      res.json({message:'this is an product put route'})
 })
+
+app.get('/products/:id',(req, res)=>{
+
+    console.log(req.params.id);
+    
+     res.json({message: 'this is single product route', product:req.params.id})
+})
+
 app.listen(5000, () => {
     console.log('server is running');
 });
