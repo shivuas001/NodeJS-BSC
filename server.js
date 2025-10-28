@@ -2,9 +2,15 @@ const express = require('express');
 
 const app = express();
 
-app.get('/',(req, res) => {
-    res.send('hello world, i am shivu from halehalli')
+app.get('/products',(req, res) => {
+console.log(req.query.search);
+const {search} = req.query
+
+res.json({message:'this is an product get route query',
+          productName: search})
 });
+
+
 app.get('/products', (req, res)=>{
     res.json({message: 'this is an products get route', page:5})
 });
@@ -18,8 +24,10 @@ app.put('/products', (req, res)=>{
 app.get('/products/:id',(req, res)=>{
 
     console.log(req.params.id);
+
+    const {id} = req.params
     
-     res.json({message: 'this is single product route', product:req.params.id})
+     res.json({message: 'this is single product route', product:id})
 })
 
 app.listen(5000, () => {
