@@ -2,6 +2,12 @@ const express = require('express');
 
 const app = express();
 
+app.use(express.json());
+
+app.get('/', (req, res)=>{
+    res.json({message: 'this is an products get route', page:5})
+});
+
 app.get('/products',(req, res) => {
 console.log(req.query.search);
 const {search} = req.query
@@ -11,12 +17,14 @@ res.json({message:'this is an product get route query',
 });
 
 
-app.get('/products', (req, res)=>{
-    res.json({message: 'this is an products get route', page:5})
+app.post('/products',(req, res)=>{
+    console.log(req.body);
+    const { name, Processor, Price} = req.body;
+    
+    res.json({message:'this is an post product', name, Processor, Price,});
 });
-app.post('/products', (req, res)=>{
-     res.json({message:'this is an product post route'})
-})
+
+
 app.put('/products', (req, res)=>{
      res.json({message:'this is an product put route'})
 })
